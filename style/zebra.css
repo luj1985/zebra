@@ -1,9 +1,22 @@
+@font-face {
+  font-family: 'zebra-arrows';
+  src: url('../font/zebra-arrows.eot?65375855');
+  src: url('../font/zebra-arrows.eot?65375855#iefix') format('embedded-opentype'), url('../font/zebra-arrows.woff?65375855') format('woff'), url('../font/zebra-arrows.ttf?65375855') format('truetype'), url('../font/zebra-arrows.svg?65375855#zebra-arrows') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
+}
+body {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: none;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 .pages {
   position: relative;
@@ -16,7 +29,7 @@ body {
   height: 100%;
   display: block;
   position: absolute;
-  padding: 30px;
+  padding: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -27,44 +40,114 @@ body {
 .page.active {
   z-index: 100;
 }
-#sec1 {
-  background-color: lightgray;
-}
-#sec2 {
-  background-color: lightblue;
-}
-#sec3 {
-  background-color: lightgreen;
-}
 .page.active:before,
 .page.active:after {
   display: none;
 }
-.page[data-zebra-south]:after {
-  content: 'south';
+.page[data-zebra-south]:before,
+.page[data-zebra-north]:before,
+.page[data-zebra-west]:before,
+.page[data-zebra-east]:before,
+.page[data-zebra-south]:after,
+.page[data-zebra-north]:after,
+.page[data-zebra-west]:after,
+.page[data-zebra-east]:after {
+  font-family: "zebra-arrows";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+  width: 1em;
+  margin-left: .2em;
+  margin-right: .2em;
+  line-height: 1em;
   position: absolute;
+  text-align: center;
+}
+.page[data-zebra-south]:after {
+  content: '\e803';
   left: 0;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  -webkit-animation: south 1.2s infinite ease-in-out;
 }
 .page[data-zebra-north]:before {
-  content: 'north';
-  position: absolute;
+  content: '\e800';
   top: 0;
   left: 0;
   width: 100%;
-  text-align: center;
+  -webkit-animation: north 1.2s infinite ease-in-out;
 }
 .page[data-zebra-west]:before {
-  content: 'west';
-  position: absolute;
+  content: '\e802';
   top: 45%;
   left: 0;
+  -webkit-animation: west 1.2s infinite ease-in-out;
 }
 .page[data-zebra-east]:after {
-  content: 'east';
-  position: absolute;
+  content: '\e801';
   top: 45%;
   right: 0;
+  -webkit-animation: east 1.2s infinite ease-in-out;
+}
+@-webkit-keyframes south {
+  0%,
+  30% {
+    opacity: 0;
+    padding-bottom: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-bottom: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-bottom: 0px;
+  }
+}
+@-webkit-keyframes north {
+  0%,
+  30% {
+    opacity: 0;
+    padding-top: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-top: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-top: 0px;
+  }
+}
+@-webkit-keyframes west {
+  0%,
+  30% {
+    opacity: 0;
+    padding-left: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-left: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-left: 0px;
+  }
+}
+@-webkit-keyframes east {
+  0%,
+  30% {
+    opacity: 0;
+    padding-right: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-right: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-right: 0px;
+  }
 }

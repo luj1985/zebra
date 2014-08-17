@@ -1,8 +1,26 @@
+@font-face {
+  font-family: 'zebra-arrows';
+  src: url('../font/zebra-arrows.eot?65375855');
+  src: url('../font/zebra-arrows.eot?65375855#iefix') format('embedded-opentype'),
+       url('../font/zebra-arrows.woff?65375855') format('woff'),
+       url('../font/zebra-arrows.ttf?65375855') format('truetype'),
+       url('../font/zebra-arrows.svg?65375855#zebra-arrows') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
+}
+
+body {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: none;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .pages {
@@ -17,7 +35,8 @@ html, body {
   display: block;
   position: absolute;
 
-  padding: 30px;
+  padding: 20px;
+
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -30,50 +49,80 @@ html, body {
   }
 }
 
-#sec1 {
-  background-color: lightgray;
-}
-#sec2 {
-  background-color: lightblue;
-}
-#sec3 {
-  background-color: lightgreen;
-}
-
 .page.active {
   &:before, &:after {
     display: none;
   }
 }
 
+.page[data-zebra-south],
+.page[data-zebra-north],
+.page[data-zebra-west],
+.page[data-zebra-east] {
+  &:before, &:after {
+    font-family: "zebra-arrows";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+
+    text-decoration: inherit;
+    text-align: center;
+    text-transform: none;
+
+    width: 1em;
+    margin-left: .2em;
+    margin-right: .2em;
+    line-height: 1em;
+   
+    position: absolute;
+    text-align: center;
+  }
+}
+
+@duration : 1.2s;
+@easing : ease-in-out;
+@start : 0px;
+@end : 4px;
+
 .page[data-zebra-south]:after {
-  content : 'south';
-  position: absolute;
+  content: '\e803';
   left: 0;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  -webkit-animation: south @duration infinite @easing;
 }
 
 .page[data-zebra-north]:before {
-  content: 'north';
-  position: absolute;
+  content: '\e800';
   top: 0;
   left: 0;
   width: 100%;
-  text-align: center;
+  -webkit-animation: north @duration infinite @easing;
 }
 
 .page[data-zebra-west]:before {
-  content: 'west';
-  position: absolute;
+  content: '\e802';
   top: 45%;
   left: 0;
+  -webkit-animation: west @duration infinite @easing;
 }
 
 .page[data-zebra-east]:after {
-  content: 'east';
-  position: absolute;
+  content: '\e801';
   top: 45%;
   right: 0;
+  -webkit-animation: east @duration infinite @easing;
 }
+
+.keyframes(@name, @property) {
+  @-webkit-keyframes @name {
+    0%, 30% { opacity: 0; @{property}: @start; }
+    70%     { opacity: 1; @{property}: @end;   }
+    100%    { opacity: 0; @{property}: @start; }
+  }
+}
+
+.keyframes(south, padding-bottom);
+.keyframes(north, padding-top);
+.keyframes(west,  padding-left);
+.keyframes(east,  padding-right);
