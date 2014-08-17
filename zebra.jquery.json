@@ -1,0 +1,26 @@
+{
+  "name": "zebra",
+  "title": "Group DOM into logical views",
+  "description": "jQuery plugin to group HTML page into serveral logical views, and provide animation whwhen navigate",
+  "version": "",
+  "homepage": "http://github.com/luj1985/zebra.git",
+  "author": {
+    "name": "Lu, Jun",
+    "url": "https://github.com/luj1985"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/luj1985/zebra.git"
+  },
+  "bugs": "",
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://opensource.org/licenses/MIT"
+  }],
+  "dependencies": {
+    "jquery": "latest"
+  },
+  "keywords": [
+    "jquery-plugin"
+  ]
+}

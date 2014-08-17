@@ -1,0 +1,70 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.pages {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  padding: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.page.hide {
+  display: none;
+}
+.page.active {
+  z-index: 100;
+}
+#sec1 {
+  background-color: lightgray;
+}
+#sec2 {
+  background-color: lightblue;
+}
+#sec3 {
+  background-color: lightgreen;
+}
+.page.active:before,
+.page.active:after {
+  display: none;
+}
+.page[data-zebra-south]:after {
+  content: 'south';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.page[data-zebra-north]:before {
+  content: 'north';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.page[data-zebra-west]:before {
+  content: 'west';
+  position: absolute;
+  top: 45%;
+  left: 0;
+}
+.page[data-zebra-east]:after {
+  content: 'east';
+  position: absolute;
+  top: 45%;
+  right: 0;
+}

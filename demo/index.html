@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+
+    <title>Zebra jQuery plugin demo</title>
+    <link rel="stylesheet" type="text/css" href="../style/zebra.css">
+
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../src/zebra.js"></script>
+    <script type="text/javascript" src="run.js"></script>
+  </head>
+  <body>
+    <main class="pages">
+      <section id="sec1" data-zebra-south="#sec2" class="page hide">
+        <h1>This is the first page</h1>
+      </section>
+      <section id="sec2" data-zebra-east="#sec3" data-zebra-north="#sec1" class="page ">
+        <h1>This is the second page</h1>
+        <span style="display:inline-block;background-color:red;width:80px" >threshold</span>
+      </section>
+      <section id="sec3" data-zebra-west="#sec2" class="page hide">
+        <h1>This is the third page</h1>
+      </section>
+    </main>
+  </body>
+</html>
