@@ -16,13 +16,6 @@ html, body {
   width: 100%;
 }
 
-body {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-text-size-adjust: none;
-  -webkit-backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
 .pages {
   position: relative;
   height: 100%;
@@ -90,6 +83,7 @@ body {
   bottom: 0;
   width: 100%;
   -webkit-animation: south @duration infinite @easing;
+          animation: south @duration infinite @easing;
 }
 
 .page[data-zebra-north]:before {
@@ -98,6 +92,7 @@ body {
   left: 0;
   width: 100%;
   -webkit-animation: north @duration infinite @easing;
+          animation: north @duration infinite @easing;
 }
 
 .page[data-zebra-west]:before {
@@ -105,6 +100,7 @@ body {
   top: 45%;
   left: 0;
   -webkit-animation: west @duration infinite @easing;
+          animation: west @duration infinite @easing;
 }
 
 .page[data-zebra-east]:after {
@@ -112,10 +108,16 @@ body {
   top: 45%;
   right: 0;
   -webkit-animation: east @duration infinite @easing;
+          animation: east @duration infinite @easing;
 }
 
 .keyframes(@name, @property) {
   @-webkit-keyframes @name {
+    0%, 30% { opacity: 0; @{property}: @start; }
+    70%     { opacity: 1; @{property}: @end;   }
+    100%    { opacity: 0; @{property}: @start; }
+  }
+  @keyframes @name {
     0%, 30% { opacity: 0; @{property}: @start; }
     70%     { opacity: 1; @{property}: @end;   }
     100%    { opacity: 0; @{property}: @start; }

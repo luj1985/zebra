@@ -12,12 +12,6 @@ body {
   height: 100%;
   width: 100%;
 }
-body {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-text-size-adjust: none;
-  -webkit-backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-}
 .pages {
   position: relative;
   height: 100%;
@@ -71,6 +65,7 @@ body {
   bottom: 0;
   width: 100%;
   -webkit-animation: south 1.2s infinite ease-in-out;
+  animation: south 1.2s infinite ease-in-out;
 }
 .page[data-zebra-north]:before {
   content: '\e800';
@@ -78,20 +73,38 @@ body {
   left: 0;
   width: 100%;
   -webkit-animation: north 1.2s infinite ease-in-out;
+  animation: north 1.2s infinite ease-in-out;
 }
 .page[data-zebra-west]:before {
   content: '\e802';
   top: 45%;
   left: 0;
   -webkit-animation: west 1.2s infinite ease-in-out;
+  animation: west 1.2s infinite ease-in-out;
 }
 .page[data-zebra-east]:after {
   content: '\e801';
   top: 45%;
   right: 0;
   -webkit-animation: east 1.2s infinite ease-in-out;
+  animation: east 1.2s infinite ease-in-out;
 }
 @-webkit-keyframes south {
+  0%,
+  30% {
+    opacity: 0;
+    padding-bottom: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-bottom: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-bottom: 0px;
+  }
+}
+@keyframes south {
   0%,
   30% {
     opacity: 0;
@@ -121,6 +134,21 @@ body {
     padding-top: 0px;
   }
 }
+@keyframes north {
+  0%,
+  30% {
+    opacity: 0;
+    padding-top: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-top: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-top: 0px;
+  }
+}
 @-webkit-keyframes west {
   0%,
   30% {
@@ -136,7 +164,37 @@ body {
     padding-left: 0px;
   }
 }
+@keyframes west {
+  0%,
+  30% {
+    opacity: 0;
+    padding-left: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-left: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-left: 0px;
+  }
+}
 @-webkit-keyframes east {
+  0%,
+  30% {
+    opacity: 0;
+    padding-right: 0px;
+  }
+  70% {
+    opacity: 1;
+    padding-right: 4px;
+  }
+  100% {
+    opacity: 0;
+    padding-right: 0px;
+  }
+}
+@keyframes east {
   0%,
   30% {
     opacity: 0;
