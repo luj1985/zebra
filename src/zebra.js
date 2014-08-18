@@ -18,17 +18,15 @@
     var me = this,
         pages = this.$el.find(this.options.selector);
 
-    pages.on('touchstart', function(e) {
+    pages.on('touchstart touchmove touchend', function(e) {
       e.preventDefault();
-      var touch = e.originalEvent.touches[0];
-      me.start(e.target, touch.pageX, touch.pageY);
-    }).on('touchmove', function(e) {
-      e.preventDefault();
-      var touch = e.originalEvent.touches[0];
-      me.move(e.target, touch.pageX, touch.pageY);
-    }).on('touchend', function(e) {
-      e.preventDefault();
-      me.end(e.target);
+      var touch = e.originalEvent.touches[0] || {},
+          view = e.target;
+      switch(e.type) {
+        case 'touchstart': me.start(view, touch.pageX, touch.pageY); break;
+        case 'touchmove':  me.move(view, touch.pageX, touch.pageY); break;
+        case 'touchend' :  me.end(view);
+      }
     });
   };
 
@@ -39,14 +37,25 @@
     this.view = view;
   };
 
+  ZebraProto.cancel = function(view) {
+    var animate = {
+      north : { top : -this.height },
+      south : { top : this.height },
+      east : { left : this.width },
+      west : { left : -this.width }
+    }[this.direction];
+
+    view.animate(animate, {
+      complete : function() {
+        view.addClass('hide')
+            .removeClass('active');
+      }
+    });
+  };
+
   ZebraProto.updateDirection = function(direction) {
     if (this.direction !== direction) {
-      var next = this.nextView();
-      next.animate(this.getCancelProps(this.direction), {
-        complete : function() {
-          next.addClass('hide').removeClass('active');
-        }
-      });
+      this.cancel(this.nextView());
     }
     this.direction = direction;
   };
@@ -88,15 +97,6 @@
       .css(this.offset);
   };
 
-  ZebraProto.getCancelProps = function(direction) {
-    return {
-      north : { top : -this.height },
-      south : { top : this.height },
-      east : { left : this.width },
-      west : { left : -this.width }
-    }[direction];
-  };
-
   ZebraProto.end = function() {
     var current = this.currentView(),
         next = this.nextView();
@@ -109,12 +109,7 @@
         }
       });
     } else {
-      next.animate(this.getCancelProps(this.direction), {
-        complete : function() {
-          next.addClass('hide');
-          next.removeClass('active');
-        }
-      });
+      this.cancel(next);
     }
   };
 
