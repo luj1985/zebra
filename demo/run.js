@@ -1,3 +1,3 @@
 $(function() {
-  $('main').zebra();
+  $('.pages').zebra();
 });
