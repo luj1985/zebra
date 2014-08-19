@@ -9,24 +9,14 @@
     <meta http-equiv="cleartype" content="on">
 
     <title>Zebra jQuery plugin demo</title>
+    
     <link rel="stylesheet" type="text/css" href="../style/zebra.css">
     <style type="text/css">
-    
-    #sec1 {
-      background-color: lightgray;
-    }
-    #sec2 {
-      background-color: lightblue;
-    }
-    #sec3 {
-      background-color: lightgreen;
-    }
-
+    #sec1 { background-color: lightgray; }
+    #sec2 { background-color: lightblue; }
+    #sec3 { background-color: lightgreen; }
     </style>
 
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="../src/zebra.js"></script>
-    <script type="text/javascript" src="run.js"></script>
   </head>
   <body>
     <div class="pages">
@@ -42,4 +32,12 @@
       </section>
     </div>
   </body>
+
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="../src/zebra.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    $('.pages').zebra();
+  });
+  </script>
 </html>
